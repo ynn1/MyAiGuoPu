@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/myflie.css" />
+	</head>
+	<body>
+		<div id="box">
+			<div class="nav"></div>
+			<div class="container0">
+				<p class="user"><span></span>的购物车</p>
+				<ul class="container">
+					<p class="nofile">您还没有登录果园账号，快去登录吧!
+						<a href="zhuce.html">登录</a>
+					</p>
+					<p class="noshopping">您的购物车空空如也，快去果园逛逛吧!
+						<a href="shouye.html">逛果园</a>
+					</p>
+				</ul>
+			</div>
+			<div class="footer"></div>
+		</div>
+	</body>
+</html>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script>
+	$(function(){
+		$(".nav").load("nav.html");
+		$(".footer").load("footer.html");
+		//获得cookie
+		function getCookie(key){
+			var data=decodeURI(document.cookie).replace(/\s/g,"").split(";");
+			for(var i=0;i<data.length;i++){
+				if(data[i].split("=")[0]==key){
+					return data[i].split("=")[1];					
+				}
+			}
+		}
+		var user1=getCookie("user");
+		//---------用户没有登录时显示------
+		if(user1==""){
+			$(".container0 .user").css({
+				"display":"none"
+			})
+			$(".container .nofile").css({
+				"display":"block"
+			});
+		}else{
+		$(".container0 .user span").text(user1);
+		console.log(user1);
+		$.get("php/getShoppingCart.php",{
+			"vipName":user1
+			},function(data){
+				var res=eval(data);
+				if(res==""){
+					$(".container0 .user").css({
+						"display":"none"
+					})
+					$(".container .noshopping").css({
+						"display":"block"
+					});
+				}
+				console.log(res);
+				for(var i=0;i<res.length;i++){
+					let htmlStr='<li><img src="img/'+res[i].goodsImg+'" style="width:200px"/><div class="containerRight"><h3 class="title">'+res[i].goodsName+'</h3><p class="price">价格:￥'+res[i].goodsPrice+'元</p><p>发货到<select><option>西安</option><option>北京</option><option>上海</option></select></p><p class="beizhu">备注:'+res[i].goodsDesc+'</p><p class="num">'+res[i].goodsId+'</p><a href="###" class="del">移出购物车</a><p class="inp"><input type="button" value="-" class="dec"><input type="text" class="num"  value='+res[i].goodsCount+' /><input type="button" value="+" class="add"></p></div></li>';
+				$(".container").append(htmlStr);
+				}
+				//----------移出购物车-------------
+				$(".del").click(function(){
+					//-------1.从界面删除---
+					$(this).parents("li").detach();
+	//					console.log($(this).prev(".num").text());
+					let id0=$(this).prev(".num").text();
+					console.log(id0);
+					//-------2.数据库中删除-----
+					$.get("php/deleteGoods.php",
+						{
+							"vipName":user1,
+							"goodsId":id0
+						},
+						function(data){
+							console.log(data);
+					})
+				})
+				$(".container li .add").click(function(){
+					let count0=$(this).prev(".num").val();
+						count0++;
+						console.log(count0);
+					$(this).prev(".num").val(count0);
+				})
+				$(".container li .dec").click(function(){
+					let count0=$(this).next(".num").val();
+					if(count0>0){
+						count0--;
+					console.log(count0);
+					$(this).next(".num").val(count0);
+					}
+					
+				})
+			});
+		}
+	})
+</script>

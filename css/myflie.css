@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+ul, li {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+a {
+  text-decoration: none;
+  color: gray; }
+
+#box {
+  width: 1350px;
+  margin: 0 auto; }
+
+.nav {
+  width: 1350px;
+  height: 100;
+  border-bottom: solid 3px #CCCCCC; }
+
+.footer {
+  width: 1350px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  clear: both; }
+
+.container0 {
+  width: 1350px;
+  min-height: 30px; }
+  .container0 .user {
+    border: solid 1px #ADFF2F;
+    margin-left: 50px;
+    width: 150px; }
+    .container0 .user span {
+      color: red;
+      font-size: 28px;
+      line-height: 30px; }
+  .container0 .container {
+    width: 1350px;
+    min-height: 30px; }
+    .container0 .container .noshopping {
+      color: #ADFF2F;
+      text-align: center;
+      font-size: 30px;
+      margin: 20px;
+      display: none; }
+      .container0 .container .noshopping a {
+        color: red; }
+    .container0 .container .nofile {
+      color: #ADFF2F;
+      text-align: center;
+      font-size: 30px;
+      margin: 20px;
+      display: none; }
+      .container0 .container .nofile a {
+        color: red; }
+    .container0 .container li {
+      border-bottom: solid 2px #ccc;
+      padding: 25px;
+      min-height: 200px; }
+      .container0 .container li img {
+        float: left;
+        margin: 0 100px; }
+      .container0 .container li h3 {
+        height: 30px; }
+      .container0 .container li p {
+        height: 30px; }
+      .container0 .container li .inp {
+        margin-left: 1000px;
+        margin-bottom: 0; }
+        .container0 .container li .inp input {
+          width: 35px; }
+
+/*# sourceMappingURL=myflie.css.map */

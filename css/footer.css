@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+ul, li {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+a {
+  text-decoration: none;
+  color: gray; }
+
+.foot {
+  width: 1350px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  border-top: 1px solid #ccc;
+  color: gray; }
+
+.footTop {
+  width: 1350px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  border-bottom: 1px solid #ccc; }
+  .footTop li {
+    float: left;
+    width: 335px;
+    height: 60px;
+    margin-top: 20px;
+    border-left: 1px solid #ccc;
+    text-align: center; }
+    .footTop li dt {
+      float: left;
+      margin: 0 40px; }
+    .footTop li dd {
+      float: left;
+      line-height: 30px; }
+  .footTop li:nth-child(1) {
+    border: none; }
+
+.footCenter {
+  width: 1350px;
+  height: 180px;
+  border-bottom: 1px solid #ccc;
+  position: absolute;
+  top: 100px;
+  padding-top: 20px; }
+  .footCenter .footCenterLeft {
+    color: gray;
+    float: left;
+    width: 500px;
+    text-align: center; }
+    .footCenter .footCenterLeft p {
+      line-height: 30px; }
+  .footCenter .footCenterCenter {
+    color: gray;
+    float: left; }
+    .footCenter .footCenterCenter dl {
+      float: left;
+      margin: 0 15px;
+      text-align: center; }
+      .footCenter .footCenterCenter dl dd {
+        line-height: 40px; }
+  .footCenter .footCenterRight {
+    float: left; }
+    .footCenter .footCenterRight dl {
+      float: left;
+      padding: 0 20px;
+      margin-top: 10px; }
+    .footCenter .footCenterRight dd {
+      margin: 10px 0;
+      line-height: 30px; }
+
+.footBottom {
+  width: 1350px;
+  text-align: center;
+  position: absolute;
+  top: 320px; }
+  .footBottom p {
+    line-height: 40px; }
+  .footBottom a {
+    margin: 5px; }
+  .footBottom img {
+    margin-top: 10px; }
+
+/*# sourceMappingURL=footer.css.map */

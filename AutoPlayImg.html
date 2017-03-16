@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		
+		body{			
+			height: 100%;
+			width: 100%;						
+		}
+		
+		*{
+		    padding: 0;
+		    margin:0;
+		}
+		ul,li{
+		    list-style-type: none;
+		}
+		
+		#box{
+		    width:560px;
+		    height:300px;
+		    margin:0 auto;
+		    overflow:hidden;
+		    position:relative;
+		}
+		
+		.active{
+		    background:red;
+		}
+		
+	</style>
+	
+	<body>
+    <div id="box">
+    
+    </div>
+			
+		
+	</body>
+</html>
+
+<script type="text/javascript" src="js/move.js"></script>
+<script type="text/javascript">
+	//1、项目中的对象：轮播图
+	//box:容器的id
+	function AutoPlayerImgs(boxId,width,height,imgs,urls,speed,btn){
+		//属性：
+		this.boxId = boxId;
+		this.width = width;
+		this.height = height;
+		
+		this.left = 0;
+		
+		this.imgs = imgs;		
+		this.urls = urls;
+		this.speed = speed;
+		
+		this.timer = null;
+		
+		this.btn = btn;
+		
+		this.currOrd = 0;//当前图片序号；
+		this.initUI();
+		
+	}
+	
+	AutoPlayerImgs.prototype.initUI=function(){
+		var boxObj = document.getElementById(this.boxId);
+		var that = this;
+		boxObj.onmouseover = function(){
+			that.stopPlay();	
+		};
+		boxObj.onmouseout = function(){
+			that.go();	
+		};
+		//1、放图片ul
+		var ulObj = document.createElement("ul");
+		ulObj.style.cssText = " width:9999px;height:100%;position:relative;left:0px";
+		for(var i=0;i<this.imgs.length;i++){
+			var liObj = document.createElement("li");
+			liObj.style.cssText = "float:left;";
+			var imgObj = document.createElement("img");
+			imgObj.src = this.imgs[i];
+			
+			liObj.appendChild(imgObj);
+			liObj.ord = i;
+			var that = this;
+			liObj.onclick = function(){
+				location.href = that.urls[this.ord];
+			}
+			ulObj.appendChild(liObj);
+		}	
+		document.getElementById(this.boxId).appendChild(ulObj);
+		
+		ulObj = document.createElement("ul");
+		ulObj.style.cssText = "position:absolute;left:180px;bottom:0;";
+		for(var i=0;i<this.imgs.length;i++){
+			var liObj = document.createElement("li");
+			liObj.style.cssText = "float:left;width:20px;height:20px;border-radius: 50%;background:pink;margin:10px;";
+			liObj.ord = i;
+			var that = this;
+			liObj.onmouseover = function(){
+				that.goImg(this.ord);	
+			};
+			
+			ulObj.appendChild(liObj);
+		}	
+		document.getElementById(this.boxId).appendChild(ulObj);
+		ulObj.children[0].style.backgroundColor = this.btn.highLightColor;
+	}
+		
+	
+	AutoPlayerImgs.prototype.goStep = function(){
+		this.currOrd++;
+		if(this.currOrd>=this.imgs.length){
+			this.currOrd=0;
+		}
+		//1、
+		var boxObj = document.getElementById(this.boxId);
+		var ulImgObj = boxObj.getElementsByTagName("ul")[0];
+		
+		var that = this;
+		move(ulImgObj,{"left":(-1)*this.currOrd*that.width});
+		
+		//变换按钮的颜色
+		var ulBtnObj = boxObj.getElementsByTagName("ul")[1];
+		for(let i=0;i<ulBtnObj.children.length;i++){
+			ulBtnObj.children[i].style.backgroundColor = this.btn.bgColor;
+		}
+		ulBtnObj.children[this.currOrd].style.backgroundColor = this.btn.highLightColor;
+	}
+	
+	AutoPlayerImgs.prototype.go = function(){
+		var that = this;
+		this.timer = setInterval(function(){
+												that.goStep();
+											},
+								 this.speed
+							);
+	}
+	
+	AutoPlayerImgs.prototype.stopPlay = function(){		
+		clearInterval(this.timer);
+	}
+	
+	AutoPlayerImgs.prototype.goImg=function(ord){
+		var boxObj = document.getElementById(this.boxId);
+		var ulImgObj = boxObj.getElementsByTagName("ul")[0];
+		
+		move(ulImgObj,{"left":(-1)*ord*this.width});
+		this.currOrd = ord;
+		
+		var ulBtnObj = boxObj.getElementsByTagName("ul")[1];
+		for(let i=0;i<ulBtnObj.children.length;i++){
+			ulBtnObj.children[i].style.backgroundColor = this.btn.bgColor;
+		}
+		ulBtnObj.children[this.currOrd].style.backgroundColor = this.btn.highLightColor;
+		
+	}
+	
+	//2、逻辑
+	
+	
+	window.onload = function(){
+		//1、创建轮播图（包括页面）
+		var l = new AutoPlayerImgs(
+			"box",
+			560,
+			300,
+			["img/1a.jpg","img/2a.jpg","img/3a.jpg","img/4a.jpg","img/5a.jpg"],
+			["http://www.baidu.com","http://www.taobao.com","http://www.jd.cn","http://www.sohu.com","http://www.mobiletrain.org"],
+			1000,
+			{width:20,height:20,bgColor:"white",highLightColor:"red"}
+		);
+		l.go();	
+	}
+
+	
+	
+</script>

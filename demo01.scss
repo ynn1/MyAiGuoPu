@@ -1,0 +1,339 @@
+@charset "utf-8";
+*{
+    margin:0;
+    padding:0;
+}
+$Width:1350px;
+#box{
+    width:1422px;
+    margin:0 auto;
+    position:relative;
+}
+.nav{
+    width:$Width;
+    height:100px;
+    margin:0 auto;
+    .center li:first-child{
+        border-bottom: 5px #ADFF2F solid;
+    }
+}
+#banner{
+    width:1421px;
+    height:400px;
+    position:relative;
+    overflow:hidden;
+}
+.container-top{
+    width:$Width;
+    margin:0 auto;
+    height:250px;
+    border-bottom:solid 1px #ccc;
+    overflow: hidden;
+    position:relative;
+    .container0{
+        width:1310px;
+        height:250px;
+        overflow: hidden;
+    }
+    .pre{
+        position:absolute;
+        left:0;
+        top:50px;
+        font-size:100px;
+        color:#ccc;
+    }
+    .next{
+        position:absolute;
+        right:0;
+        top:50px;
+        font-size:100px;
+        color:#ccc;
+    }
+    .containerTop{
+        position:absolute;
+        left:0;
+        width:9999px;
+        margin-left:45px;
+    }
+    li{
+        float:left;
+        border:solid 1px #ccc;
+        position:relative;
+        overflow:hidden;
+        width:270px;
+        height:200px;
+        margin:22px;
+        img{
+            width:300px;
+            height:200px;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+    }
+    li:nth-child(1){
+        margin-left:0;
+    }
+    li:nth-last(4){
+        margin-right:0;
+    }
+}
+.container{
+    color:gray;
+     p{
+            display:block;
+            height:20px;
+        }
+     h2{
+            display:inline-block;
+            margin:0 10px;
+        }
+    a{
+        float:right;
+        color:gray;
+    }
+    dt{
+        position:relative;
+        overflow:hidden;
+        //-----------------------------------------------------------
+//      border:solid 1px red;
+        img{
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        p{
+            position:absolute;
+            display:block;
+            background:rgba(0,0,0,0.5);
+            width:100%;
+            height:30px;
+            line-height:30px;
+            color:#fff;
+            bottom:-60px;
+            i{
+                position:absolute;
+                left:0;
+            }
+        }
+        span{
+            width:60px;
+            height:60px;
+            background:red;
+            line-height:30px;
+            text-align:center;
+            color:#fff;
+            font-size:25px;
+            position:absolute;
+            top:0;
+            left:0;
+//          display:none;
+        }
+    }
+}
+//.dt1:hover .wrap1{
+////  top:0px;
+//  display:block;
+//}
+.container-center1{
+    width:$Width;
+    height:750px;
+    border-bottom:solid 1px #ccc;
+    margin:0 auto;
+      .center1-left{
+            float:left;
+            height:612px;
+//          width:248px;
+            position:relative;
+            left:0;
+//          overflow:hidden;
+            img{
+                position:absolute;
+                left:0;
+            }
+        }
+}
+@mixin dtp{
+    li{
+        float:left;
+    }
+    dl{
+        width:270px;
+        margin-left:5px;
+    }
+    dt{
+        height:270px;
+        margin-top:0;
+    }
+    dd{
+        width:270px;
+        .ddleft{
+            float:left;
+            a{
+                float:none;
+            }
+        }
+    }
+}
+.center1-right{
+    float:left;
+    width:1100px;
+    height:612px;
+//  border:solid 1px red;
+    position:relative;
+    left:250px;
+    @include dtp;
+    overflow:hidden;
+}
+@mixin dtp2{
+     @include dtp;
+    dl{
+        width:265px;
+        margin-left:5px;
+        dt{
+            img{
+                width:265px;
+            }
+        }
+        dd{
+            width:265px;
+        }
+    }
+}
+.container-center2{
+    width:$Width;
+    height:750px;
+    border-bottom:1px solid #ccc;
+    margin:0 auto;
+   @include dtp2;
+   clear:both;
+}
+.center2{
+     width:$Width;
+    height:650px;
+    clear:both;
+}
+.container-center3{
+    width:$Width;
+    height:900px;
+    border-bottom:1px solid #ccc;
+    margin:0 auto;
+   @include dtp2;
+   clear:both;
+   .img1{
+       width:$Width;
+       height:200px;
+   }
+}
+.container-center4{
+    width:$Width;
+    height:450px;
+    margin:0 auto;
+    @include dtp2;
+    border-bottom:solid 1px #ccc;
+    clear:both;
+}
+.footer{
+    width:$Width;
+    height:500px;
+    margin:0 auto;
+    clear:both;
+}
+.up{
+    width:50px;
+    height:50px;
+    position:fixed;
+    right:0;
+    top:700px;
+    background:#0ff;
+    text-align:center;
+    a{
+        color:#fff;
+        line-height:25px;
+        font-weight: bolder;
+    }
+    a:hover{
+        color:#f00;
+    }
+}
+//-------------商品详情部分-----------------
+.container{
+//  width:$Width;
+    .containerLeftMin{
+        float:left;
+        margin-left:150px;
+        li{
+            border:solid 1px #ff0;
+            margin:10px;
+            width:150px;
+            height:150;
+        }
+        .active{
+            border:solid 2px #f00;
+        }
+        img{
+            width:100%;
+        }
+    }
+    .containerLeftMax{
+        float:left;
+        border:solid 1px #ff0;
+        margin:10px;
+        width:480px;
+        img{
+            width:100%;
+        }
+    }
+    .containerRight{
+        float:left;
+//      float:right;
+        margin:10px;
+        p{
+            height:30px;
+            input{
+                width:60px;
+                height:30px;
+                font-size:20px;
+                text-align:center;  
+            }
+            .buy{
+                width:150px;
+                margin-top:20px;
+                background: #00FF00;
+            }
+            .car{
+                width:150px;
+                background: #ADFF2F;
+            }
+        }
+        .containerRightBottom{
+            margin-top:50px;
+            padding-top:20px;
+            border-top:#ccc solid 1px;
+        }
+    }
+    .containerBottom{
+        clear: both;
+        width:1000px;
+        margin:0 auto;
+        min-height: 50px;
+        border:solid 1px #ccc;
+        .sp{
+            height:40px;
+            background:#ADFF2F;
+        }
+        span{
+            float:left;
+            margin-left: 20px;
+            line-height:40px;
+        }
+        .jianjie{
+            clear:both;
+            min-height:40px;
+        }
+        .talking{
+            width:1000px;
+            display:none;
+        }
+    }
+}

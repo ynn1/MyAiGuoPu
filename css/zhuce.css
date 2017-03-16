@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+ul, li {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+a {
+  text-decoration: none;
+  color: gray; }
+
+#box {
+  width: 1350px;
+  height: 100%;
+  margin: 0 auto;
+  position: relative; }
+
+.nav {
+  width: 1350px;
+  height: 100; }
+  .nav .center li:last-child {
+    border-bottom: 5px #ADFF2F solid; }
+
+.container {
+  width: 1350px;
+  margin: 0 auto;
+  height: 500px;
+  border-top: solid 3px #ADFF2F;
+  border-bottom: solid 1px #ccc;
+  text-align: center;
+  padding: 30px; }
+  .container i {
+    color: #f00;
+    font-size: 12px; }
+  .container .containerLeft {
+    width: 500px;
+    height: 500px;
+    float: left;
+    margin: 0 100px; }
+    .container .containerLeft img {
+      margin-top: 50px; }
+    .container .containerLeft .btn {
+      width: 100px;
+      height: 30px;
+      color: grey;
+      font-size: 14px;
+      background: #ADFF2F; }
+  .container .containerRight {
+    float: left;
+    width: 500px;
+    height: 500px; }
+    .container .containerRight input {
+      width: 280px;
+      height: 28px; }
+    .container .containerRight .dl {
+      margin-top: 100px; }
+      .container .containerRight .dl input {
+        margin: 10px;
+        width: 350px;
+        height: 40px; }
+      .container .containerRight .dl .btn1 {
+        width: 100px;
+        background: #ADFF2F; }
+      .container .containerRight .dl .btn2 {
+        width: 50px;
+        background: #ADFF2F; }
+    .container .containerRight .zc {
+      display: none;
+      margin-top: 100px; }
+      .container .containerRight .zc div {
+        height: 20px; }
+      .container .containerRight .zc span {
+        float: left;
+        font-size: 25px;
+        margin: 10px; }
+      .container .containerRight .zc input {
+        width: 300px;
+        height: 40px; }
+      .container .containerRight .zc .yzm {
+        width: 80px;
+        float: left; }
+      .container .containerRight .zc .yzm2 {
+        width: 80px;
+        height: 40px;
+        background: #ccc;
+        display: inline-block;
+        margin-left: 40px; }
+      .container .containerRight .zc .change {
+        width: 80px;
+        background: #00FF00;
+        margin: 0 40px; }
+      .container .containerRight .zc .zhuce {
+        width: 150px;
+        background: #ADFF2F; }
+
+.footer {
+  width: 1350px;
+  height: 500px; }
+
+.up {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 0;
+  top: 700px;
+  background: #0ff;
+  text-align: center; }
+  .up a {
+    color: #fff;
+    line-height: 25px;
+    font-weight: bolder; }
+  .up a:hover {
+    color: #f00; }
+
+/*# sourceMappingURL=zhuce.css.map */

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/zhuce.css" />
+	</head>
+	<body>
+		<div id="box">
+			<div class="nav"></div>
+			<!---------------------------内容部分开始-------------------------->
+			<div class="container">
+				<div class="containerLeft">
+					<img src="img/zhuce.jpg" />
+					<a href="###"><input type="button" value="会员注册" class="btn"/></a>
+				</div>
+				<div class="containerRight">
+					<!-------------------------登录框-------------------------->
+					<form class="dl">
+						<p><input type="text" placeholder="请输入用户名" class="name1"/></p>
+						<div><i class="nametxt1"></i></div>
+						<p><input type="password" placeholder="请输入密码" class="pwd1"/></p>
+						<div><i class="pwdtxt1"></i></div>
+						<input type="button" value="登录" class="btn1">
+						<!--<input type="button" value="注册" class="btn2">-->
+					</form>
+					<!-------------------------注册框--------------------------->
+					<form class="zc">
+						<p><span>用户名:</span>&nbsp;<input type="text" placeholder="请设置用户名" class="name2"/></p>
+						<div><i class="nametxt2"></i></div>
+						<p><span>密码:</span>&nbsp;&nbsp;&nbsp;<input type="password" placeholder="密码由6-12位字母数字下划线组成" class="pwd2"></p>
+						<div><i class="pwdtxt2"></i></div>
+						<p><span>确认密码:</span><input type="password" placeholder="请保持与输入密码一致" class="nextpwd2"></p>
+						<div><i class="nextpwdtxt2"></i></div>
+						<p><span>验证码:</span>&nbsp;<input type="text" class="yzm" />
+						<span class="yzm2"></span>
+						<input type="button" class="change" value="换一批"/>			
+						</p>
+						<div><p><i class="yzmtxt"></i></p></div>
+						<input type="button" class="zhuce" value="注册"/>
+					</form>
+				</div>
+			</div>
+			<!-----------------------------------尾部--------------------------->
+			<div class="footer"></div>
+			<div class="up"><a href="#">顶部TOP</a></div>
+		</div>
+	</body>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/zhuce.js"></script>
+	<script src="js/cookie.js"></script>
+</html>

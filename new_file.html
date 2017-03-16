@@ -1,0 +1,322 @@
+<!-----------------首页js-------------------->
+<script>
+	$(function(){
+		//-----------导航直接引用外部写好的nav.html------------------
+		$(".nav").load("nav.html");
+		//-----------轮播图----------------
+		//-----------调用对象封装的的函数----------
+		var l = new AutoPlayerImgs(
+			"banner",
+			1421,
+			400,
+			["img/banner1.jpg","img/banner2.jpg","img/banner3.jpg","img/banner4.jpg","img/banner5.jpg"],
+			["https://huodong.fruitday.com/cms/indexpc/1201?region_id=106092","https://huodong.fruitday.com/cms/indexpc_v3/1926?region_id=106092","https://huodong.fruitday.com/cms/indexpc/1817?region_id=106092","https://huodong.fruitday.com/cms/indexpc/1873?region_id=106092","https://huodong.fruitday.com/cms/indexpc_v3/1917?region_id=106092"],
+			1500,
+			{width:20,height:20,bgColor:"white",highLightColor:"#0f0"}
+		);
+		l.go();	
+		//-----------------尾部引用外部写好的footer.html-----------------
+		$(".footer").load("footer.html");
+		//-------------------------动态创建内容-------------------------
+		//----------------果园推荐部分--------------------
+		$.getJSON("fruit.json",function(res){
+			for(var i=0;i<res.length;i++){
+			htmlStr="<li><dl><dt class='dt2'><img src='img/"+res[i].url+"'/><span class='wrap2'>会员专享</span><p><marquee>"+res[i].beizhu+"</marquee></p></dt><dd><div class='ddleft'><a href='###'>"+res[i].title+"</a><br /><a href='###'>"+res[i].jiage+"</a></div><a href='###'><img src='img/car.jpg' width='36'/></a></dd></dl></li>";
+			$(".center1-right").append(htmlStr);
+			}
+			//-----------效果实现------------
+			xiaoguo();
+		})
+		//---------------------效果封装函数xiaoguo()----------------------
+		//------------------------内容效果设计（放在动态添加之后才会显示效果）---------------------------
+		function xiaoguo(){
+			var timer0;
+			var _left=0;
+			//--------鼠标移到图片上-------
+			$(".container ul dl dt").mouseenter(function(){
+				//-------图片放大-------
+				$(this).children("img").animate({
+					"width":"300px"
+				})
+				//-----滚动文字出现-----
+				$(this).children("p").animate({
+					"bottom":"0"
+				})
+//					var m=0;
+//					//----------滚动文字的滚动实现-----------（有点小问题）
+//					timer0=setInterval(function(){
+//						m++;
+//						 _left=m*(-10);
+//						$(".container ul dl dt p i").animate({
+//							"left":_left+"px"
+//						})
+//						console.log(_left);
+//					},30)
+			});
+			//--------鼠标移开--------
+			$(".container ul dl dt").mouseleave(function(){
+				$(this).children("img").animate({
+					"width":"275px"
+				})
+				$(this).children("p").animate({
+					"bottom":"-60px"
+				})
+				clearInterval(timer0);
+				$(".container ul dl dt p i").animate({
+					"left":"0px"
+				})
+			});
+			//点击跳转购物车
+			$(".container ul dl dt img").click(function(){
+				location="http://127.0.0.1:8020/AiGuoPu/%E8%B4%AD%E7%89%A9.html"
+			});
+		}
+		//--------------------全球鲜果部分----------------
+		$.getJSON("fruit.json",function(res){
+			for(var i=0;i<res.length;i++){
+			htmlStr="<li><dl><dt class='dt2'><img src='img/"+res[i].url+"'/><span class='wrap2'>"+res[i].youhui+"</span><p><marquee>"+res[i].beizhu+"</marquee></p></dt><dd><div class='ddleft'><a href='###'>"+res[i].title+"</a><br /><a href='###'>"+res[i].jiage+"</a></div><a href='###'><img src='img/car.jpg' width='36'/></a></dd></dl></li>";
+			$(".container-center2 .center2").append(htmlStr);
+			}
+			//-----------效果实现------------
+			xiaoguo();
+		})	
+	})
+</script>
+<!----------------------------------------------购物shopjs------------------------------------->
+<script>
+	$(function(){
+		$(".nav").load("nav.html");
+		$(".footer").load("footer.html");
+		//----------------------------左边展示部分的设计----------------------
+		var m=0;
+		var timer;
+		//将准备展示的图片地址存放在数组imgsrc中
+		var imgsrc=["img/1-270x270-102-UXSXB7Y2.jpg","img/1-270x270-11-PTCD3DD6.jpg","img/1-270x270-12266-ACAPHW81.jpg" ];
+		function autoplay(){
+			timer=setInterval (function(){
+				m++;
+				if(m==3){
+					m=0;
+				}
+				$(".containerLeftMax img").attr({"src":imgsrc[m]});
+				for(var i=0;i<imgsrc.length;i++){
+					oli[i].className="";
+				}
+				oli[m].className="active";
+			},1000)	
+		}
+		autoplay();
+		//鼠标移上停止播放，移下继续播放
+		$(".containerLeftMin li").mouseenter(function(){
+			clearInterval(timer);
+		})
+		$(".containerLeftMin li").mouseleave(function(){
+			autoplay();
+		})
+		$(".containerLeftMax img").mouseenter(function(){
+			clearInterval(timer);
+		})
+		$(".containerLeftMax img").mouseleave(function(){
+			autoplay();
+		})
+		//----------------------右边大图跟随左边图片变化----------------
+		var oli=document.getElementsByClassName("containerLeftMin")[0].getElementsByTagName("li");
+		for(var i=0;i<oli.length;i++){
+			oli[i].index=i;
+			oli[i].onmouseover=function(){
+				for(var j=0;j<oli.length;j++){
+					oli[j].className="";
+				}
+				this.className="active";
+				m=this.index;
+				$(".containerLeftMax img").attr({"src":imgsrc[m]});
+			}
+		}
+		//----------------------------------右边购物车部分设计-----------------------------------
+		//-------------动态创建效果------------
+		let htmlStr;
+		htmlStr='<p><h2>美国华盛顿红地厘蛇果</h2></p><p>果园价:</p><p>规格:</p><p>配送至:<select><option>北京</option><option>上海</option><option>天津</option><option>深圳</option><option>西安</option></select></p><p>数量:<input type="button" class="delate" value="-"/><input type="text" class="txt" value="1"/><input type="button" class="add" value="+"/></p><p><input type="button" class="buy" value="立即购买"/><input type="button" class="car" value="加入购物车"/></p><div class="containerRightBottom"><p>商品编号:</p><p>产地：</p><p>备注:</p></div>';
+		$(".containerRight").append(htmlStr);
+		//-------------数量加减------------------
+		var num=$(".containerRight .txt").val();
+		$(".containerRight .add").click(function(){
+			num++;
+//			console.log(num);
+			$(".containerRight .txt").val(num);
+		});
+		$(".containerRight .delate").click(function(){
+			if(num>0){
+				num--;
+				$(".containerRight .txt").val(num);
+			}
+		});
+		$(".containerRight .txt").blur(function(){
+			if($(".containerRight .txt").val()<0){
+				$(".containerRight .txt").val(0);
+			}
+			var num2=$(".containerRight .txt").val();
+			num2=num2.replace(/\D/,"1"); // \D 所有非数字的字符
+			$(".containerRight .txt").val(num2);
+			num=num2;
+		});
+	})
+</script>
+<!------------------------------------------------注册js------------------------------->
+<script>
+		$(function(){
+			$(".nav").load("nav.html");
+			$(".nav .center li:eq(0)").removeClass("active");
+			$(".footer").load("footer.html");
+//			console.log($(".pwdtxt1").text());
+			//选择登录还是注册
+			$(".btn").click(function(){
+				($(".btn").val()=="会员登录")?$(".btn").val("会员注册"):$(".btn").val("会员登录");
+				if($(".btn").val()=="会员登录"){
+					$(".dl").css({
+						"display":"none"
+					});
+					$(".zc").css({
+						"display":"block"
+					})
+				}else if($(".btn").val()=="会员注册"){
+					$(".dl").css({
+						"display":"block"
+					});
+					$(".zc").css({
+						"display":"none"
+					})
+				}
+			});
+			
+			//getJSON后台获取
+			var flag=0;
+			$.getJSON("user.json",function(user){
+				console.log(user);
+				//----------------------------------登录框设置(模拟后台)-------------------------------
+				$(".btn1").click(function(){
+					$(".nametxt1").text("");
+					$(".pwdtxt1").text("");
+					if($(".name1").val()==""){
+						$(".nametxt1").text("#用户名不能为空")
+					}
+					for(let i=0;i<user.length;i++){
+						if($(".name1").val()==user[i].name){
+							flag++;
+							var x=i;
+							if($(".pwd1").val()==user[x].pwd){
+								alert("登陆成功");
+								$(".name1").val("");
+								$(".pwd1").val("");
+							}else{
+								$(".pwdtxt1").text("#密码错误");
+							}
+							break;
+						}
+					}
+					if(flag==0){
+						$(".nametxt1").text("#用户名不存在")
+					}
+				})
+				//------------------------------注册框设置-------------------------------------
+				//用户名设置
+				var fg=0;
+				$(".name2").blur(function(){
+					$(".nametxt2").text("");
+					for(let i=0;i<user.length;i++){
+						if($(".name2").val()==user[i].name){
+							$(".nametxt2").text("#用户名已存在")
+							fg++;
+						}else if($(".name2").val()==""){
+							$(".nametxt2").text("#用户名不能为空")
+							fg++;
+						}else{
+							fg=0;
+						}
+					}
+				})
+				//密码设置
+				$(".pwd2").blur(function(){
+					$(".pwdtxt2").text("");
+					var mypwd=$(".pwd2").val();
+					var reg=/^[0-9a-zA-Z][0-9a-zA-Z_]{5,11}$/;//
+					if(reg.test(mypwd)){//
+						$(".pwdtxt2").text("");
+						//密码确认设置
+							$(".nextpwd2").blur(function(){
+								$(".nextpwdtxt2").text("");
+								if($(".nextpwd2").val()==""){
+									$(".nextpwdtxt2").text("确认密码不能为空");
+									fg++;
+								}else if($(".nextpwd2").val()==$(".pwd2").val()&&$(".nextpwd2").val()!=""){
+									$(".nextpwdtxt2").text("");
+									fg=0;
+								}else{
+									$(".nextpwdtxt2").text("#请保持与输入密码一致");
+									fg++;
+								}
+							})
+					}else if($(".pwd2").val()==""){
+						$(".pwdtxt2").text("#密码不能为空");
+						fg++;
+					}else{
+						$(".pwdtxt2").text("#密码由6-12位字母数字下划线组成");
+						fg++;
+					}
+				})
+				
+				//验证码设置
+				//验证码获取(4位)
+				var n=parseInt(Math.random()*10000);
+				//判断验证的位数
+				if(n<1000&&n>100){		//验证码为三位数时
+					n=""+0+n;
+				}else if(n<100&&n>10){		//验证过吗为两位数时
+					n=""+0+0+n;
+				}else if(n<10){
+					n=""+0+0+0+n;
+				}
+				$(".yzm2").text(n);
+				$(".change").click(function(){
+					$(".yzm").val("");
+					var n=parseInt(Math.random()*10000);
+					//判断验证的位数
+					if(n<1000&&n>100){		//验证码为三位数时
+						n=""+0+n;
+					}else if(n<100&&n>10){		//验证过吗为两位数时
+						n=""+0+0+n;
+					}else if(n<10){
+						n=""+0+0+0+n;
+					}
+					$(".yzm2").text(n);
+				})
+				//验证码的输入
+				$(".yzm").blur(function(){
+					if($(".yzm").val()==$(".yzm2").text()){
+						$(".yzmtxt").text("");
+					}else{
+						$(".yzmtxt").text("#验证码输入错误!")
+						fg++;
+					}
+				})
+				//注册提交
+				
+				$(".zhuce").click(function(){				
+//					$(".nametxt2").text("");
+//					$(".pwdtxt2").text("");
+//					$(".nextpwdtxt2").text("");
+//					$(".yzmtxt").text("");
+					if(($(".nametxt2").text()=="")&&($(".pwdtxt2").text()=="")&&($(".nextpwdtxt2").text()=="")&&($(".yzmtxt").text()=="")&&($(".name2").val()!="")&&($(".pwd2").val()!="")&&($(".nextpwd2").val()!="")&&($(".yzm").val()!="")){
+//						alert("注册成功!");
+						location="https://huodong.fruitday.com/cms/indexpc/1201?region_id=106092";
+						$(".name2").val("");
+					$(".pwd2").val("");
+					$(".nextpwd2").val("");
+					$(".yzm").val("");
+					}else{
+						alert("请完善注册信息");
+					}
+				})
+			})
+		})
+	</script>
+<!---------------->

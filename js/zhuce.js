@@ -45,7 +45,7 @@ $(function(){
 				document.cookie=encodeURIComponent(key)+"="+encodeURIComponent(value)+";expires="+changeData(n);				
 	}
 									saveCookie("user",$(".name1").val(),30);
-									location="http://localhost/AiGuoPu02/shouye.html";
+									location="shouye.html";
 								}else{
 									alert("输入信息有误!")
 								}
@@ -143,7 +143,7 @@ $(function(){
 					function(data){
 						alert(data);
 //						alert("注册成功！");
-						location="http://127.0.0.1:8020/AiGuoPu02/shouye.html";
+						location="shouye.html";
 						$(".name2").val("");
 						$(".pwd2").val("");
 						$(".nextpwd2").val("");

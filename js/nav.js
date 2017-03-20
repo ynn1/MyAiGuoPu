@@ -5,19 +5,19 @@ $(".center li").mouseleave(function(){
 	$(this).removeClass("active");
 })
 $(".center li:eq(0)").click(function(){
-	location="http://localhost/AiGuoPu02/shouye.html";
+	location="shouye.html";
 });
 $(".center li:eq(1)").click(function(){
-	location="http://localhost/AiGuoPu02/Fruit.html";
+	location="Fruit.html";
 });
 $(".center li:eq(2)").click(function(){
-	location="http://localhost/AiGuoPu02/shengxian.html";
+	location="shengxian.html";
 });
 $(".center li:eq(3)").click(function(){
-	location="http://localhost/AiGuoPu02/gift.html";
+	location="gift.html";
 });
 $(".center li:eq(4)").click(function(){
-	location="http://localhost/AiGuoPu02/zhuce.html";
+	location="zhuce.html";
 })
 $(".nav-right .jr").click(function(){
 	if($(".shopCar .add:has(li)")){
@@ -27,7 +27,6 @@ $(".nav-right .jr").click(function(){
 	}else{
 		console.log("购物车中还没有商品，快去添加吧!")
 	}
-	
 })
 $(".shopCar i").click(function(){
 	$(".nav-right .shopCar").css({
@@ -55,3 +54,13 @@ function getCookie(key){
 }
 var user1=getCookie("user");
 $(".nav .header p .user i").text(user1);
+//删除cookie
+function deleteCookie(key){
+	saveCookie(key,"",-1);
+}
+//window.close=function(){
+//	deleteCookie("user");
+//}
+//$(window).unload(function(){
+//	deleteCookie("user");
+//})

@@ -63,15 +63,27 @@
 				}
 				console.log(res);
 				for(var i=0;i<res.length;i++){
-					let htmlStr='<li><img src="img/'+res[i].goodsImg+'" style="width:200px"/><div class="containerRight"><h3 class="title">'+res[i].goodsName+'</h3><p class="price">价格:￥'+res[i].goodsPrice+'元</p><p>发货到<select><option>西安</option><option>北京</option><option>上海</option></select></p><p class="beizhu">备注:'+res[i].goodsDesc+'</p><p class="num">'+res[i].goodsId+'</p><a href="###" class="del">移出购物车</a><p class="inp"><input type="button" value="-" class="dec"><input type="text" class="num"  value='+res[i].goodsCount+' /><input type="button" value="+" class="add"></p></div></li>';
+					let htmlStr='<li><img src="img/'+res[i].goodsImg+'" style="width:200px"/><div class="containerRight"><h3 class="title">'+res[i].goodsName+'</h3><p class="price">价格:￥'+res[i].goodsPrice+'</p>小计:<input type="text" class="money0"><p>发货到<select><option>西安</option><option>北京</option><option>上海</option></select></p><p class="beizhu">备注:'+res[i].goodsDesc+'</p><p class="id">'+res[i].goodsId+'</p><a href="###" class="del">移出购物车</a><p class="inp"><input type="button" value="-" class="dec"><input type="text" class="num"  value='+res[i].goodsCount+' /><input type="button" value="+" class="add"></p></div></li>';
 				$(".container").append(htmlStr);
 				}
+				 var sum=0;
+				for(var i=0;i<res.length;i++){
+					console.log($("li:eq("+i+")").children(".num"));
+					//-----小计----
+					num0=1*($("li:eq("+i+") .containerRight .num").val());
+					p0=1*($("li:eq("+i+") .containerRight .price").val());
+//					console.log(num0+"i"*p0);
+					($("li:eq("+i+") .containerRight .money0").val(num0*p0));
+					sum+=1*$("li:eq("+i+") .containerRight.money0").text();
+					//------存cookie-----
+				}
+			//-------总计-------
+			$(".money").text(sum);
 				//----------移出购物车-------------
 				$(".del").click(function(){
 					//-------1.从界面删除---
 					$(this).parents("li").detach();
-	//					console.log($(this).prev(".num").text());
-					let id0=$(this).prev(".num").text();
+					let id0=$(this).prev(".id").text();
 					console.log(id0);
 					//-------2.数据库中删除-----
 					$.get("php/deleteGoods.php",

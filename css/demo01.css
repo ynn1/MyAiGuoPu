@@ -28,44 +28,45 @@
   overflow: hidden;
   position: relative; }
   .container-top .container0 {
-    width: 1310px;
+    width: 1250px;
     height: 250px;
-    overflow: hidden; }
+    margin-left: 48px;
+    overflow: hidden;
+    position: relative; }
+    .container-top .container0 .containerTop {
+      position: absolute;
+      left: 0;
+      width: 9999px; }
+      .container-top .container0 .containerTop li {
+        float: left;
+        border: solid 1px #ccc;
+        position: relative;
+        overflow: hidden;
+        width: 270px;
+        height: 200px;
+        margin: 20px; }
+        .container-top .container0 .containerTop li img {
+          width: 270px;
+          height: 200px;
+          position: absolute;
+          left: 0;
+          top: 0; }
   .container-top .pre {
     position: absolute;
     left: 0;
     top: 50px;
+    background: rgba(0, 0, 0, 0.3);
     font-size: 100px;
-    color: #ccc; }
+    color: #ccc;
+    display: none; }
   .container-top .next {
     position: absolute;
     right: 0;
     top: 50px;
+    background: rgba(0, 0, 0, 0.3);
     font-size: 100px;
-    color: #ccc; }
-  .container-top .containerTop {
-    position: absolute;
-    left: 0;
-    width: 9999px;
-    margin-left: 45px; }
-  .container-top li {
-    float: left;
-    border: solid 1px #ccc;
-    position: relative;
-    overflow: hidden;
-    width: 270px;
-    height: 200px;
-    margin: 22px; }
-    .container-top li img {
-      width: 300px;
-      height: 200px;
-      position: absolute;
-      left: 0;
-      top: 0; }
-  .container-top li:nth-child(1) {
-    margin-left: 0; }
-  .container-top li:nth-last(4) {
-    margin-right: 0; }
+    color: #ccc;
+    display: none; }
 
 .container {
   color: gray; }
@@ -211,7 +212,8 @@
 
 .container-center4 {
   width: 1350px;
-  height: 450px;
+  height: 380px;
+  overflow: hidden;
   margin: 0 auto;
   border-bottom: solid 1px #ccc;
   clear: both; }
